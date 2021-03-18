@@ -21,6 +21,7 @@
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">@android:color/transparent</item>
+        <item name="android:windowLightStatusBar">true</item>
         <!-- Nav bar color. -->
         <item name="android:navigationBarColor">@android:color/transparent</item>
         <!-- Customize your theme here. -->
