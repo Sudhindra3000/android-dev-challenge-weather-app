@@ -72,6 +72,36 @@ val sampleHourlyData = listOf(
         false,
         86
     ),
+    HourlyForecastData(
+        7,
+        false,
+        84
+    ),
+    HourlyForecastData(
+        8,
+        false,
+        82
+    ),
+    HourlyForecastData(
+        9,
+        false,
+        80
+    ),
+    HourlyForecastData(
+        10,
+        false,
+        78
+    ),
+    HourlyForecastData(
+        11,
+        false,
+        80
+    ),
+    HourlyForecastData(
+        12,
+        true,
+        77
+    ),
 )
 
 @Composable
