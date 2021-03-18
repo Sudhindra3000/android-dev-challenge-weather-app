@@ -23,12 +23,11 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.example.androiddevchallenge.constants.StringConstants.DEGREE
+import com.example.androiddevchallenge.ui.components.CurrentDayWeatherCard
 import com.example.androiddevchallenge.ui.components.DailyForecastCard
 import com.example.androiddevchallenge.ui.components.HourlyForecastCard
 import com.example.androiddevchallenge.ui.components.WeatherDetailsCard
@@ -57,22 +56,7 @@ fun MyApp() {
             verticalArrangement = Arrangement.spacedBy(20.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Surface(
-                Modifier.fillMaxWidth(),
-                shape = MaterialTheme.shapes.medium,
-                elevation = 5.dp
-            ) {
-                Row(
-                    Modifier.padding(20.dp),
-                    horizontalArrangement = Arrangement.SpaceBetween
-                ) {
-                    Column {
-                        Text(text = "Heavy Rain")
-                        Text(text = "Morning")
-                    }
-                    Text(text = "84$DEGREE", style = MaterialTheme.typography.h4)
-                }
-            }
+            CurrentDayWeatherCard(Modifier.fillMaxWidth())
             WeatherDetailsCard(Modifier.fillMaxWidth())
             HourlyForecastCard(Modifier.fillMaxWidth())
             DailyForecastCard(Modifier.fillMaxWidth())
