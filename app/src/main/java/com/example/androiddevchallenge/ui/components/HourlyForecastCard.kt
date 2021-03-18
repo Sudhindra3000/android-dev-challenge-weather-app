@@ -14,8 +14,10 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.example.androiddevchallenge.R
 import com.example.androiddevchallenge.constants.StringConstants.DEGREE
+import com.example.androiddevchallenge.models.WeatherType
 
 data class HourlyForecastData(
+    val weatherType: WeatherType,
     val time: Int,
     val am: Boolean,
     val temperature: Int
@@ -23,81 +25,97 @@ data class HourlyForecastData(
 
 val sampleHourlyData = listOf(
     HourlyForecastData(
+        WeatherType.SUNNY,
         -1,
         true,
         87
     ),
     HourlyForecastData(
+        WeatherType.SUNNY,
         10,
         true,
         89
     ),
     HourlyForecastData(
+        WeatherType.CLOUDY,
         11,
         true,
         87
     ),
     HourlyForecastData(
+        WeatherType.SUNNY,
         12,
         false,
         91
     ),
     HourlyForecastData(
+        WeatherType.CLOUDY,
         1,
         false,
         93
     ),
     HourlyForecastData(
+        WeatherType.CLOUDY,
         2,
         false,
         93
     ),
     HourlyForecastData(
+        WeatherType.CLOUDY,
         3,
         false,
         91
     ),
     HourlyForecastData(
+        WeatherType.SUNNY,
         4,
         false,
         89
     ),
     HourlyForecastData(
+        WeatherType.SUNNY,
         5,
         false,
         87
     ),
     HourlyForecastData(
+        WeatherType.SUNNY,
         6,
         false,
         86
     ),
     HourlyForecastData(
+        WeatherType.CLOUDY,
         7,
         false,
         84
     ),
     HourlyForecastData(
+        WeatherType.CLOUDY,
         8,
         false,
         82
     ),
     HourlyForecastData(
+        WeatherType.CLOUDY,
         9,
         false,
         80
     ),
     HourlyForecastData(
+        WeatherType.CLOUDY,
         10,
         false,
         78
     ),
     HourlyForecastData(
+        WeatherType.CLOUDY,
         11,
         false,
         80
     ),
     HourlyForecastData(
+        WeatherType.CLOUDY,
         12,
         true,
         77
@@ -127,13 +145,16 @@ fun HourlyForecastCard(modifier: Modifier) {
 
 @Composable
 fun HourlyForecastItem(data: HourlyForecastData) {
-    val (time, am, temperature) = data
+    val (type, time, am, temperature) = data
     Column(
         verticalArrangement = Arrangement.spacedBy(8.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(text = if (time != -1) "$time${if (am) "AM" else "PM"}" else "Now")
-        Icon(painter = painterResource(R.drawable.ic_sunny), contentDescription = "Weather Type")
+        Icon(
+            painter = painterResource(if (type == WeatherType.SUNNY) R.drawable.ic_sunny else R.drawable.ic_cloudy),
+            contentDescription = "Weather Type"
+        )
         Text(text = "$temperature$DEGREE")
     }
 }
