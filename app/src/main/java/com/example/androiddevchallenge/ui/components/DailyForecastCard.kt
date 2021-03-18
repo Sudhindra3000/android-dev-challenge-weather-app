@@ -1,5 +1,6 @@
 package com.example.androiddevchallenge.ui.components
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
@@ -8,6 +9,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -105,7 +107,7 @@ fun DailyForecastItem(
         verticalAlignment = Alignment.CenterVertically
     ) {
         Text(modifier = Modifier.weight(1f), text = "$weekDay, $date")
-        Text(modifier = Modifier.weight(1f), text = "$maxT  $minT", textAlign = TextAlign.Center)
+        Text(modifier = Modifier.weight(1f), text = "$maxT  $minT", textAlign = TextAlign.Justify)
         Icon(
             modifier = Modifier.weight(1f, false),
             painter = painterResource(if (type == WeatherType.SUNNY) R.drawable.ic_sunny else R.drawable.ic_cloudy),
