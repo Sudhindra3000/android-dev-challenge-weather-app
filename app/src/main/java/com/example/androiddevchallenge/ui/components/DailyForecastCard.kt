@@ -78,8 +78,7 @@ val sampleDailyForecastData = listOf(
 fun DailyForecastCard(modifier: Modifier) {
     Surface(
         modifier,
-        shape = MaterialTheme.shapes.medium,
-        elevation = 5.dp
+        shape = MaterialTheme.shapes.medium
     ) {
         Column(
             Modifier.padding(20.dp),

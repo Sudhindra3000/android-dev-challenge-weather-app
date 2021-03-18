@@ -26,8 +26,7 @@ val sampleWeatherDetails = listOf(
 fun WeatherDetailsCard(modifier: Modifier) {
     Surface(
         modifier,
-        shape = MaterialTheme.shapes.medium,
-        elevation = 5.dp
+        shape = MaterialTheme.shapes.medium
     ) {
         Row(Modifier.padding(20.dp), horizontalArrangement = Arrangement.SpaceBetween) {
             sampleWeatherDetails.forEach { (type, value) ->
