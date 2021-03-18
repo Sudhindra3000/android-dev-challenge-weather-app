@@ -19,7 +19,6 @@ import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
@@ -28,6 +27,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.example.androiddevchallenge.constants.StringConstants.DEGREE
+import com.example.androiddevchallenge.ui.components.WeatherDetailsCard
 import com.example.androiddevchallenge.ui.components.HourlyForecastCard
 import com.example.androiddevchallenge.ui.theme.MyTheme
 
@@ -50,11 +50,12 @@ fun MyApp() {
             Modifier
                 .fillMaxSize()
                 .padding(15.dp),
+            verticalArrangement = Arrangement.spacedBy(20.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Surface(
                 Modifier.fillMaxWidth(),
-                shape = RoundedCornerShape(10.dp),
+                shape = MaterialTheme.shapes.medium,
                 elevation = 5.dp
             ) {
                 Row(
@@ -68,7 +69,7 @@ fun MyApp() {
                     Text(text = "84$DEGREE", style = MaterialTheme.typography.h4)
                 }
             }
-            Spacer(Modifier.size(20.dp))
+            WeatherDetailsCard(Modifier.fillMaxWidth())
             HourlyForecastCard(Modifier.fillMaxWidth())
         }
     }

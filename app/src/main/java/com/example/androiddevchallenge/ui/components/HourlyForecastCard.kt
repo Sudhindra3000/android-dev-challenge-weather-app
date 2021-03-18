@@ -3,8 +3,8 @@ package com.example.androiddevchallenge.ui.components
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Icon
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -21,7 +21,7 @@ data class HourlyForecastData(
     val temperature: Int
 )
 
-val sampleData = listOf(
+val sampleHourlyData = listOf(
     HourlyForecastData(
         -1,
         true,
@@ -77,18 +77,18 @@ val sampleData = listOf(
 @Composable
 fun HourlyForecastCard(modifier: Modifier) {
     Surface(
-        modifier.fillMaxWidth(),
-        shape = RoundedCornerShape(10.dp),
+        modifier,
+        shape = MaterialTheme.shapes.medium,
         elevation = 5.dp
     ) {
-        Column(Modifier.padding(15.dp)) {
+        Column(Modifier.padding(20.dp)) {
             Text(text = "Hourly Forecast")
             Spacer(Modifier.size(20.dp))
             Row(
                 Modifier.horizontalScroll(rememberScrollState()),
                 horizontalArrangement = Arrangement.spacedBy(40.dp)
             ) {
-                sampleData.forEach {
+                sampleHourlyData.forEach {
                     HourlyForecastItem(it)
                 }
             }
