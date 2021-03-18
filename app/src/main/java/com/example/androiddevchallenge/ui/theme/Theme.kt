@@ -29,6 +29,7 @@ private val SunnyColorPalette = lightColors(
     background = red500,
     surface = red200,
 
+    onPrimary = bluishGrey,
     onSurface = bluishGrey
 )
 
@@ -40,6 +41,7 @@ private val CloudyColorPalette = lightColors(
     background = blue500,
     surface = blue200,
 
+    onPrimary = bluishGrey,
     onSurface = bluishGrey
 )
 

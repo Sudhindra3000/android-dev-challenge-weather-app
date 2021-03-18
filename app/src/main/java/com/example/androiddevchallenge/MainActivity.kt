@@ -36,7 +36,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.core.view.WindowCompat
 import com.example.androiddevchallenge.models.WeatherType
-import com.example.androiddevchallenge.ui.components.CurrentDayWeatherCard
+import com.example.androiddevchallenge.ui.components.CurrentDayWeatherInfo
 import com.example.androiddevchallenge.ui.components.DailyForecastCard
 import com.example.androiddevchallenge.ui.components.HourlyForecastCard
 import com.example.androiddevchallenge.ui.components.WeatherDetailsCard
@@ -78,7 +78,7 @@ fun MyApp(currentDayWeatherType: WeatherType) {
             verticalArrangement = Arrangement.spacedBy(20.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            CurrentDayWeatherCard(Modifier.fillMaxWidth(), currentDayWeatherType)
+            CurrentDayWeatherInfo(Modifier.fillMaxWidth(), currentDayWeatherType)
             WeatherDetailsCard(Modifier.fillMaxWidth())
             HourlyForecastCard(Modifier.fillMaxWidth())
             DailyForecastCard(Modifier.fillMaxWidth())
