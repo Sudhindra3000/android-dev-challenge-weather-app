@@ -19,7 +19,11 @@ import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.MaterialTheme
@@ -30,12 +34,16 @@ import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.core.view.WindowCompat
 import com.example.androiddevchallenge.models.WeatherType
 import com.example.androiddevchallenge.ui.components.CurrentDayWeatherCard
 import com.example.androiddevchallenge.ui.components.DailyForecastCard
 import com.example.androiddevchallenge.ui.components.HourlyForecastCard
 import com.example.androiddevchallenge.ui.components.WeatherDetailsCard
 import com.example.androiddevchallenge.ui.theme.MyTheme
+import com.google.accompanist.insets.LocalWindowInsets
+import com.google.accompanist.insets.ProvideWindowInsets
+import com.google.accompanist.insets.toPaddingValues
 
 class MainActivity : AppCompatActivity() {
 
@@ -43,10 +51,15 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        WindowCompat.setDecorFitsSystemWindows(window, false)
+
         setContent {
             val currentDayWeatherType by viewModel.currentDayWeatherType.observeAsState(WeatherType.CLOUDY)
             MyTheme(currentDayWeatherType) {
-                MyApp(currentDayWeatherType)
+                ProvideWindowInsets {
+                    MyApp(currentDayWeatherType)
+                }
             }
         }
     }
@@ -60,6 +73,7 @@ fun MyApp(currentDayWeatherType: WeatherType) {
             Modifier
                 .fillMaxSize()
                 .verticalScroll(rememberScrollState())
+                .padding(LocalWindowInsets.current.systemBars.toPaddingValues())
                 .padding(15.dp),
             verticalArrangement = Arrangement.spacedBy(20.dp),
             horizontalAlignment = Alignment.CenterHorizontally
