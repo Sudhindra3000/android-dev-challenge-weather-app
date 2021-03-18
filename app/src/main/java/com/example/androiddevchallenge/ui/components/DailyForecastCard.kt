@@ -1,10 +1,9 @@
 package com.example.androiddevchallenge.ui.components
 
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.Icon
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -77,13 +76,19 @@ val sampleDailyForecastData = listOf(
 
 @Composable
 fun DailyForecastCard(modifier: Modifier) {
-    Column(
+    Surface(
         modifier,
-        verticalArrangement = Arrangement.spacedBy(10.dp)
+        shape = MaterialTheme.shapes.medium,
+        elevation = 5.dp
     ) {
-        Text(text = "Daily Forecast")
-        sampleDailyForecastData.forEach {
-            DailyForecastItem(Modifier.fillMaxWidth(), data = it)
+        Column(
+            Modifier.padding(20.dp),
+            verticalArrangement = Arrangement.spacedBy(20.dp)
+        ) {
+            Text(text = "Daily Forecast")
+            sampleDailyForecastData.forEach {
+                DailyForecastItem(Modifier.fillMaxWidth(), data = it)
+            }
         }
     }
 }
