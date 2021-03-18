@@ -17,34 +17,42 @@ package com.example.androiddevchallenge.ui.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.MaterialTheme
-import androidx.compose.material.darkColors
 import androidx.compose.material.lightColors
 import androidx.compose.runtime.Composable
+import com.example.androiddevchallenge.models.WeatherType
 
-private val DarkColorPalette = darkColors(
-    primary = purple200,
-    primaryVariant = purple700,
-    secondary = teal200
+private val SunnyColorPalette = lightColors(
+    primary = red500,
+    primaryVariant = red500,
+    secondary = blue900,
+
+    background = red500,
+    surface = red200,
+
+    onSurface = bluishGrey
 )
 
-private val LightColorPalette = lightColors(
-    primary = purple500,
-    primaryVariant = purple700,
-    secondary = teal200
+private val CloudyColorPalette = lightColors(
+    primary = blue500,
+    primaryVariant = blue500,
+    secondary = blue900,
 
-    /* Other default colors to override
-background = Color.White,
-surface = Color.White,
-onPrimary = Color.White,
-onSecondary = Color.Black,
-onBackground = Color.Black,
-onSurface = Color.Black,
-*/
+    background = blue500,
+    surface = blue200,
+
+    onSurface = bluishGrey
 )
 
 @Composable
-fun MyTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Composable () -> Unit) {
-    val colors = /*if (darkTheme) DarkColorPalette else*/ LightColorPalette
+fun MyTheme(
+    weatherType: WeatherType,
+    darkTheme: Boolean = isSystemInDarkTheme(),
+    content: @Composable () -> Unit
+) {
+    val colors = when (weatherType) {
+        WeatherType.SUNNY -> SunnyColorPalette
+        WeatherType.CLOUDY -> CloudyColorPalette
+    }
 
     MaterialTheme(
         colors = colors,

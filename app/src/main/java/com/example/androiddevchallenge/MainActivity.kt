@@ -17,6 +17,7 @@ package com.example.androiddevchallenge
 
 import android.os.Bundle
 import androidx.activity.compose.setContent
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
@@ -24,9 +25,12 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.example.androiddevchallenge.models.WeatherType
 import com.example.androiddevchallenge.ui.components.CurrentDayWeatherCard
 import com.example.androiddevchallenge.ui.components.DailyForecastCard
 import com.example.androiddevchallenge.ui.components.HourlyForecastCard
@@ -34,11 +38,15 @@ import com.example.androiddevchallenge.ui.components.WeatherDetailsCard
 import com.example.androiddevchallenge.ui.theme.MyTheme
 
 class MainActivity : AppCompatActivity() {
+
+    private val viewModel by viewModels<MainViewModel>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            MyTheme {
-                MyApp()
+            val currentDayWeatherType by viewModel.currentDayWeatherType.observeAsState(WeatherType.CLOUDY)
+            MyTheme(currentDayWeatherType) {
+                MyApp(currentDayWeatherType)
             }
         }
     }
@@ -46,7 +54,7 @@ class MainActivity : AppCompatActivity() {
 
 // Start building your app here!
 @Composable
-fun MyApp() {
+fun MyApp(currentDayWeatherType: WeatherType) {
     Surface(color = MaterialTheme.colors.background) {
         Column(
             Modifier
@@ -56,7 +64,7 @@ fun MyApp() {
             verticalArrangement = Arrangement.spacedBy(20.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            CurrentDayWeatherCard(Modifier.fillMaxWidth())
+            CurrentDayWeatherCard(Modifier.fillMaxWidth(), currentDayWeatherType)
             WeatherDetailsCard(Modifier.fillMaxWidth())
             HourlyForecastCard(Modifier.fillMaxWidth())
             DailyForecastCard(Modifier.fillMaxWidth())
