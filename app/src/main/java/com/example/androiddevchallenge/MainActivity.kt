@@ -27,6 +27,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.example.androiddevchallenge.constants.StringConstants.DEGREE
+import com.example.androiddevchallenge.ui.components.HourlyForecastCard
 import com.example.androiddevchallenge.ui.theme.MyTheme
 
 class MainActivity : AppCompatActivity() {
@@ -63,9 +65,11 @@ fun MyApp() {
                         Text(text = "Heavy Rain")
                         Text(text = "Morning")
                     }
-                    Text(text = "84°", style = MaterialTheme.typography.h4)
+                    Text(text = "84$DEGREE", style = MaterialTheme.typography.h4)
                 }
             }
+            Spacer(Modifier.size(20.dp))
+            HourlyForecastCard(Modifier.fillMaxWidth())
         }
     }
 }
