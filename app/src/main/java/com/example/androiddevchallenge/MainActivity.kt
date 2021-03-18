@@ -18,9 +18,8 @@ package com.example.androiddevchallenge
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
@@ -51,8 +50,22 @@ fun MyApp() {
                 .padding(15.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Text(text = "Heavy Rain")
-            Text(text = "Morning")
+            Surface(
+                Modifier.fillMaxWidth(),
+                shape = RoundedCornerShape(10.dp),
+                elevation = 5.dp
+            ) {
+                Row(
+                    Modifier.padding(20.dp),
+                    horizontalArrangement = Arrangement.SpaceBetween
+                ) {
+                    Column {
+                        Text(text = "Heavy Rain")
+                        Text(text = "Morning")
+                    }
+                    Text(text = "84°", style = MaterialTheme.typography.h4)
+                }
+            }
         }
     }
 }
