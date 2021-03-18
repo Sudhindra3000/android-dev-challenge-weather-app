@@ -19,6 +19,8 @@ import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
@@ -27,8 +29,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.example.androiddevchallenge.constants.StringConstants.DEGREE
-import com.example.androiddevchallenge.ui.components.WeatherDetailsCard
+import com.example.androiddevchallenge.ui.components.DailyForecastCard
 import com.example.androiddevchallenge.ui.components.HourlyForecastCard
+import com.example.androiddevchallenge.ui.components.WeatherDetailsCard
 import com.example.androiddevchallenge.ui.theme.MyTheme
 
 class MainActivity : AppCompatActivity() {
@@ -49,6 +52,7 @@ fun MyApp() {
         Column(
             Modifier
                 .fillMaxSize()
+                .verticalScroll(rememberScrollState())
                 .padding(15.dp),
             verticalArrangement = Arrangement.spacedBy(20.dp),
             horizontalAlignment = Alignment.CenterHorizontally
@@ -71,6 +75,7 @@ fun MyApp() {
             }
             WeatherDetailsCard(Modifier.fillMaxWidth())
             HourlyForecastCard(Modifier.fillMaxWidth())
+            DailyForecastCard(Modifier.fillMaxWidth())
         }
     }
 }

@@ -18,8 +18,8 @@ data class WeatherDetails(
 
 val sampleWeatherDetails = listOf(
     WeatherDetails("Wind", "33 m/h"),
-    WeatherDetails("Humidity", "23 km"),
-    WeatherDetails("Visibility", "64%"),
+    WeatherDetails("Humidity", "23%"),
+    WeatherDetails("Visibility", "11 km"),
 )
 
 @Composable
