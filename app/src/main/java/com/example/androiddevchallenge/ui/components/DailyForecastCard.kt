@@ -8,10 +8,16 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import com.example.androiddevchallenge.R
+import com.example.androiddevchallenge.constants.StringConstants
 import com.example.androiddevchallenge.models.WeatherType
 
 data class DailyForecastData(
@@ -104,7 +110,14 @@ fun DailyForecastItem(
         verticalAlignment = Alignment.CenterVertically
     ) {
         Text(modifier = Modifier.weight(1f), text = "$weekDay, $date")
-        Text(modifier = Modifier.weight(1f), text = "$maxT  $minT", textAlign = TextAlign.Justify)
+        Text(modifier = Modifier.weight(1f), text = buildAnnotatedString {
+            withStyle(SpanStyle(color = Color(0xFF28284D), fontWeight = FontWeight.Bold)) {
+                append("$maxT${StringConstants.DEGREE} ")
+            }
+            withStyle(SpanStyle()) {
+                append("$minT${StringConstants.DEGREE}")
+            }
+        }, textAlign = TextAlign.Justify)
         Icon(
             modifier = Modifier.weight(1f, false),
             painter = painterResource(if (type == WeatherType.SUNNY) R.drawable.ic_sunny else R.drawable.ic_cloudy),
