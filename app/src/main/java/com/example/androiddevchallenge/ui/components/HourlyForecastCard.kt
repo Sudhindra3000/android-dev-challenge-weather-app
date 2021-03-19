@@ -11,6 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.example.androiddevchallenge.R
 import com.example.androiddevchallenge.constants.StringConstants.DEGREE
@@ -129,7 +130,7 @@ fun HourlyForecastCard(modifier: Modifier) {
         shape = MaterialTheme.shapes.medium
     ) {
         Column(Modifier.padding(20.dp)) {
-            Text(text = "Hourly Forecast")
+            Text(text = "Hourly Forecast", fontWeight = FontWeight.Bold)
             Spacer(Modifier.size(20.dp))
             Row(
                 Modifier.horizontalScroll(rememberScrollState()),

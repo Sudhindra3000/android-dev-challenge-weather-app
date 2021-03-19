@@ -1,14 +1,12 @@
 package com.example.androiddevchallenge.ui.components
 
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 
 data class WeatherDetails(
@@ -31,7 +29,8 @@ fun WeatherDetailsCard(modifier: Modifier) {
         Row(Modifier.padding(20.dp), horizontalArrangement = Arrangement.SpaceBetween) {
             sampleWeatherDetails.forEach { (type, value) ->
                 Column {
-                    Text(text = type)
+                    Text(text = type, fontWeight = FontWeight.Bold)
+                    Spacer(Modifier.size(8.dp))
                     Text(text = value)
                 }
             }

@@ -90,7 +90,7 @@ fun DailyForecastCard(modifier: Modifier) {
             Modifier.padding(20.dp),
             verticalArrangement = Arrangement.spacedBy(20.dp)
         ) {
-            Text(text = "Daily Forecast")
+            Text(text = "Daily Forecast", fontWeight = FontWeight.Bold)
             sampleDailyForecastData.forEach {
                 DailyForecastItem(Modifier.fillMaxWidth(), data = it)
             }

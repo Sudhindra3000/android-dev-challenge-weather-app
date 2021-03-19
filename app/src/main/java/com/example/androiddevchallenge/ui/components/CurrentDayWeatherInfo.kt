@@ -1,12 +1,8 @@
 package com.example.androiddevchallenge.ui.components
 
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -33,8 +29,7 @@ fun CurrentDayWeatherInfo(
             contentDescription = "Current Day Weather Type"
         )
         Text(text = currentDayWeatherType.toString(), style = MaterialTheme.typography.caption)
-        Text(text = "84${StringConstants.DEGREE}", style = MaterialTheme.typography.h4)
-        Text(text = "Heavy Rain")
-        Text(text = "Morning")
+        Spacer(Modifier.size(10.dp))
+        Text(text = "84${StringConstants.DEGREE}", style = MaterialTheme.typography.h1)
     }
 }
