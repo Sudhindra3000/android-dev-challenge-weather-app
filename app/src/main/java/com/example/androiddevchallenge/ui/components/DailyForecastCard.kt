@@ -8,7 +8,6 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
@@ -111,7 +110,7 @@ fun DailyForecastItem(
     ) {
         Text(modifier = Modifier.weight(1f), text = "$weekDay, $date")
         Text(modifier = Modifier.weight(1f), text = buildAnnotatedString {
-            withStyle(SpanStyle(color = Color(0xFF28284D), fontWeight = FontWeight.Bold)) {
+            withStyle(SpanStyle(fontWeight = FontWeight.Bold)) {
                 append("$maxT${StringConstants.DEGREE} ")
             }
             withStyle(SpanStyle()) {
@@ -124,7 +123,7 @@ fun DailyForecastItem(
                 when (type) {
                     WeatherType.SUNNY -> R.drawable.ic_sunny
                     WeatherType.CLOUDY -> R.drawable.ic_cloudy
-                    WeatherType.STORMY -> R.drawable.ic_thunder
+                    WeatherType.STORMY -> R.drawable.ic_stormy
                 }
             ),
             contentDescription = "Daily Forecast Weather Type"

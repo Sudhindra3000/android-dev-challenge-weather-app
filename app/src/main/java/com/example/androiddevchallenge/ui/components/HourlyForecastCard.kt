@@ -157,7 +157,7 @@ fun HourlyForecastItem(data: HourlyForecastData) {
                 when (type) {
                     WeatherType.SUNNY -> R.drawable.ic_sunny
                     WeatherType.CLOUDY -> R.drawable.ic_cloudy
-                    WeatherType.STORMY -> R.drawable.ic_thunder
+                    WeatherType.STORMY -> R.drawable.ic_stormy
                 }
             ),
             contentDescription = "Weather Type"

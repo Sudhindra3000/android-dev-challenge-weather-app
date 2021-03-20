@@ -8,6 +8,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.example.androiddevchallenge.R
 import com.example.androiddevchallenge.constants.StringConstants
@@ -29,12 +30,15 @@ fun CurrentDayWeatherInfo(
                 when (currentDayWeatherType) {
                     WeatherType.SUNNY -> R.drawable.ic_sunny
                     WeatherType.CLOUDY -> R.drawable.ic_cloudy
-                    WeatherType.STORMY -> R.drawable.ic_thunder
+                    WeatherType.STORMY -> R.drawable.ic_stormy
                 }
             ),
             contentDescription = "Current Day Weather Type"
         )
-        Text(text = currentDayWeatherType.toString(), style = MaterialTheme.typography.caption)
+        Text(
+            text = currentDayWeatherType.toString(),
+            style = MaterialTheme.typography.caption.copy(fontWeight = FontWeight.Bold)
+        )
         Spacer(Modifier.size(10.dp))
         Text(text = "84${StringConstants.DEGREE}", style = MaterialTheme.typography.h1)
     }
