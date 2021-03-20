@@ -56,13 +56,13 @@ val sampleHourlyData = listOf(
         93
     ),
     HourlyForecastData(
-        WeatherType.CLOUDY,
+        WeatherType.RAINY,
         2,
         false,
         93
     ),
     HourlyForecastData(
-        WeatherType.CLOUDY,
+        WeatherType.RAINY,
         3,
         false,
         91
@@ -156,6 +156,7 @@ fun HourlyForecastItem(data: HourlyForecastData) {
             painter = painterResource(
                 when (type) {
                     WeatherType.SUNNY -> R.drawable.ic_sunny
+                    WeatherType.RAINY -> R.drawable.ic_rainy
                     WeatherType.CLOUDY -> R.drawable.ic_cloudy
                     WeatherType.STORMY -> R.drawable.ic_stormy
                 }

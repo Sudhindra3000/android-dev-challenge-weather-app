@@ -29,6 +29,7 @@ fun CurrentDayWeatherInfo(
             painter = painterResource(
                 when (currentDayWeatherType) {
                     WeatherType.SUNNY -> R.drawable.ic_sunny
+                    WeatherType.RAINY -> R.drawable.ic_rainy
                     WeatherType.CLOUDY -> R.drawable.ic_cloudy
                     WeatherType.STORMY -> R.drawable.ic_stormy
                 }

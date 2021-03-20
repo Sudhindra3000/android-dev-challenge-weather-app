@@ -55,7 +55,7 @@ class MainActivity : AppCompatActivity() {
         WindowCompat.setDecorFitsSystemWindows(window, false)
 
         setContent {
-            val currentDayWeatherType by viewModel.currentDayWeatherType.observeAsState(WeatherType.CLOUDY)
+            val currentDayWeatherType by viewModel.currentDayWeatherType.observeAsState(WeatherType.RAINY)
             MyTheme(currentDayWeatherType) {
                 ProvideWindowInsets {
                     MyApp(currentDayWeatherType)

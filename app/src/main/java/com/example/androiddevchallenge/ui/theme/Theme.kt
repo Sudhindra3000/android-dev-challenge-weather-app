@@ -33,13 +33,25 @@ private val SunnyColorPalette = lightColors(
     onSurface = bluishGrey
 )
 
-private val CloudyColorPalette = lightColors(
+private val RainyColorPalette = lightColors(
     primary = blue500,
     primaryVariant = blue500,
     secondary = blue900,
 
     background = blue500,
     surface = blue200,
+
+    onPrimary = bluishGrey,
+    onSurface = bluishGrey
+)
+
+private val CloudyColorPalette = lightColors(
+    primary = grey500,
+    primaryVariant = grey500,
+    secondary = blue900,
+
+    background = grey500,
+    surface = grey200,
 
     onPrimary = bluishGrey,
     onSurface = bluishGrey
@@ -65,6 +77,7 @@ fun MyTheme(
 ) {
     val colors = when (weatherType) {
         WeatherType.SUNNY -> SunnyColorPalette
+        WeatherType.RAINY -> RainyColorPalette
         WeatherType.CLOUDY -> CloudyColorPalette
         WeatherType.STORMY -> StormyColorPalette
     }
