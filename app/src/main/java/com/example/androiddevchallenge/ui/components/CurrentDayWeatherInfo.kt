@@ -25,7 +25,13 @@ fun CurrentDayWeatherInfo(
     ) {
         Icon(
             modifier = Modifier.size(200.dp),
-            painter = painterResource(id = if (currentDayWeatherType == WeatherType.SUNNY) R.drawable.ic_sunny else R.drawable.ic_cloudy),
+            painter = painterResource(
+                when (currentDayWeatherType) {
+                    WeatherType.SUNNY -> R.drawable.ic_sunny
+                    WeatherType.CLOUDY -> R.drawable.ic_cloudy
+                    WeatherType.STORMY -> R.drawable.ic_thunder
+                }
+            ),
             contentDescription = "Current Day Weather Type"
         )
         Text(text = currentDayWeatherType.toString(), style = MaterialTheme.typography.caption)

@@ -72,7 +72,7 @@ val sampleDailyForecastData = listOf(
         minTemp = 66
     ),
     DailyForecastData(
-        weatherType = WeatherType.CLOUDY,
+        weatherType = WeatherType.STORMY,
         weekDay = "Wed",
         date = "Mar 24",
         maxTemp = 91,
@@ -120,7 +120,13 @@ fun DailyForecastItem(
         }, textAlign = TextAlign.Justify)
         Icon(
             modifier = Modifier.weight(1f, false),
-            painter = painterResource(if (type == WeatherType.SUNNY) R.drawable.ic_sunny else R.drawable.ic_cloudy),
+            painter = painterResource(
+                when (type) {
+                    WeatherType.SUNNY -> R.drawable.ic_sunny
+                    WeatherType.CLOUDY -> R.drawable.ic_cloudy
+                    WeatherType.STORMY -> R.drawable.ic_thunder
+                }
+            ),
             contentDescription = "Daily Forecast Weather Type"
         )
     }

@@ -86,19 +86,19 @@ val sampleHourlyData = listOf(
         86
     ),
     HourlyForecastData(
-        WeatherType.CLOUDY,
+        WeatherType.STORMY,
         7,
         false,
         84
     ),
     HourlyForecastData(
-        WeatherType.CLOUDY,
+        WeatherType.STORMY,
         8,
         false,
         82
     ),
     HourlyForecastData(
-        WeatherType.CLOUDY,
+        WeatherType.STORMY,
         9,
         false,
         80
@@ -153,7 +153,13 @@ fun HourlyForecastItem(data: HourlyForecastData) {
     ) {
         Text(text = if (time != -1) "$time${if (am) "AM" else "PM"}" else "Now")
         Icon(
-            painter = painterResource(if (type == WeatherType.SUNNY) R.drawable.ic_sunny else R.drawable.ic_cloudy),
+            painter = painterResource(
+                when (type) {
+                    WeatherType.SUNNY -> R.drawable.ic_sunny
+                    WeatherType.CLOUDY -> R.drawable.ic_cloudy
+                    WeatherType.STORMY -> R.drawable.ic_thunder
+                }
+            ),
             contentDescription = "Weather Type"
         )
         Text(text = "$temperature$DEGREE")

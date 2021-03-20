@@ -45,6 +45,18 @@ private val CloudyColorPalette = lightColors(
     onSurface = bluishGrey
 )
 
+private val StormyColorPalette = lightColors(
+    primary = yellow500,
+    primaryVariant = yellow500,
+    secondary = blue900,
+
+    background = yellow500,
+    surface = yellow200,
+
+    onPrimary = bluishGrey,
+    onSurface = bluishGrey
+)
+
 @Composable
 fun MyTheme(
     weatherType: WeatherType,
@@ -54,6 +66,7 @@ fun MyTheme(
     val colors = when (weatherType) {
         WeatherType.SUNNY -> SunnyColorPalette
         WeatherType.CLOUDY -> CloudyColorPalette
+        WeatherType.STORMY -> StormyColorPalette
     }
 
     MaterialTheme(
