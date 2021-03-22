@@ -1,3 +1,18 @@
+/*
+ * Copyright 2021 The Android Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.example.androiddevchallenge.ui.components
 
 import androidx.compose.foundation.layout.Arrangement
@@ -113,14 +128,18 @@ fun DailyForecastItem(
         verticalAlignment = Alignment.CenterVertically
     ) {
         Text(modifier = Modifier.weight(1f), text = "$weekDay, $date")
-        Text(modifier = Modifier.weight(1f), text = buildAnnotatedString {
-            withStyle(SpanStyle(fontWeight = FontWeight.Bold)) {
-                append("$maxT${StringConstants.DEGREE} ")
-            }
-            withStyle(SpanStyle()) {
-                append("$minT${StringConstants.DEGREE}")
-            }
-        }, textAlign = TextAlign.Justify)
+        Text(
+            modifier = Modifier.weight(1f),
+            text = buildAnnotatedString {
+                withStyle(SpanStyle(fontWeight = FontWeight.Bold)) {
+                    append("$maxT${StringConstants.DEGREE} ")
+                }
+                withStyle(SpanStyle()) {
+                    append("$minT${StringConstants.DEGREE}")
+                }
+            },
+            textAlign = TextAlign.Justify
+        )
         Icon(
             modifier = Modifier.weight(1f, false),
             painter = painterResource(
