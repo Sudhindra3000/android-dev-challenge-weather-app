@@ -16,16 +16,32 @@
 package com.example.androiddevchallenge
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.androiddevchallenge.models.WeatherType
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.launch
 
 class MainViewModel : ViewModel() {
 
     private val _currentDayWeatherType = MutableStateFlow(WeatherType.RAINY)
     val currentDayWeatherType: StateFlow<WeatherType> = _currentDayWeatherType
 
-    fun refresh() {
+    private val _refreshing = MutableStateFlow(false)
+    val refreshing: StateFlow<Boolean> = _refreshing
 
+    fun refresh() {
+        _refreshing.value = true
+        viewModelScope.launch {
+            delay(2000)
+            _refreshing.value = false
+            _currentDayWeatherType.value = when (_currentDayWeatherType.value) {
+                WeatherType.SUNNY -> WeatherType.RAINY
+                WeatherType.RAINY -> WeatherType.CLOUDY
+                WeatherType.CLOUDY -> WeatherType.STORMY
+                WeatherType.STORMY -> WeatherType.SUNNY
+            }
+        }
     }
 }

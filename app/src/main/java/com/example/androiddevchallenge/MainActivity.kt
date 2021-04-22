@@ -30,10 +30,6 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -71,11 +67,14 @@ class MainActivity : AppCompatActivity() {
 // Start building your app here!
 @Composable
 fun MyApp(viewModel: MainViewModel) {
-    var refreshing by remember { mutableStateOf(false) }
+    val refreshing = viewModel.refreshing.collectAsState().value
     val refreshState = rememberSwipeRefreshState(isRefreshing = refreshing)
 
     Surface(color = MaterialTheme.colors.background) {
-        SwipeRefresh(state = refreshState, onRefresh = viewModel::refresh) {
+        SwipeRefresh(
+            state = refreshState,
+            onRefresh = viewModel::refresh
+        ) {
             Column(
                 Modifier
                     .fillMaxSize()
