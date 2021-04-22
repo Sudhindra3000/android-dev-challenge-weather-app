@@ -29,8 +29,8 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -38,7 +38,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.core.view.WindowCompat
-import com.example.androiddevchallenge.models.WeatherType
 import com.example.androiddevchallenge.ui.components.CurrentDayWeatherInfo
 import com.example.androiddevchallenge.ui.components.DailyForecastCard
 import com.example.androiddevchallenge.ui.components.HourlyForecastCard
@@ -60,10 +59,9 @@ class MainActivity : AppCompatActivity() {
         WindowCompat.setDecorFitsSystemWindows(window, false)
 
         setContent {
-            val currentDayWeatherType by viewModel.currentDayWeatherType.observeAsState(WeatherType.RAINY)
-            MyTheme(currentDayWeatherType) {
+            MyTheme(viewModel.currentDayWeatherType.collectAsState().value) {
                 ProvideWindowInsets {
-                    MyApp(currentDayWeatherType)
+                    MyApp(viewModel)
                 }
             }
         }
@@ -72,12 +70,12 @@ class MainActivity : AppCompatActivity() {
 
 // Start building your app here!
 @Composable
-fun MyApp(currentDayWeatherType: WeatherType) {
+fun MyApp(viewModel: MainViewModel) {
     var refreshing by remember { mutableStateOf(false) }
     val refreshState = rememberSwipeRefreshState(isRefreshing = refreshing)
 
     Surface(color = MaterialTheme.colors.background) {
-        SwipeRefresh(state = refreshState, onRefresh = { }) {
+        SwipeRefresh(state = refreshState, onRefresh = viewModel::refresh) {
             Column(
                 Modifier
                     .fillMaxSize()
@@ -87,7 +85,10 @@ fun MyApp(currentDayWeatherType: WeatherType) {
                 verticalArrangement = Arrangement.spacedBy(20.dp),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                CurrentDayWeatherInfo(Modifier.fillMaxWidth(), currentDayWeatherType)
+                CurrentDayWeatherInfo(
+                    Modifier.fillMaxWidth(),
+                    viewModel.currentDayWeatherType.collectAsState().value
+                )
                 WeatherDetailsCard(Modifier.fillMaxWidth())
                 HourlyForecastCard(Modifier.fillMaxWidth())
                 DailyForecastCard(Modifier.fillMaxWidth())

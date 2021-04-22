@@ -15,13 +15,17 @@
  */
 package com.example.androiddevchallenge
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.androiddevchallenge.models.WeatherType
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 
 class MainViewModel : ViewModel() {
 
-    private val _currentDayWeatherType = MutableLiveData<WeatherType>()
-    val currentDayWeatherType: LiveData<WeatherType> = _currentDayWeatherType
+    private val _currentDayWeatherType = MutableStateFlow(WeatherType.RAINY)
+    val currentDayWeatherType: StateFlow<WeatherType> = _currentDayWeatherType
+
+    fun refresh() {
+
+    }
 }
