@@ -81,5 +81,6 @@ dependencies {
     androidTestImplementation "androidx.compose.ui:ui-test-junit4:$compose_version"
 
     // Accompanist
-    implementation "com.google.accompanist:accompanist-insets:0.7.1"
+    implementation "com.google.accompanist:accompanist-insets:0.8.0"
+    implementation "com.google.accompanist:accompanist-swiperefresh:0.8.0"
 }

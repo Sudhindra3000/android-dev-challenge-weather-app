@@ -31,6 +31,9 @@ import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -44,6 +47,8 @@ import com.example.androiddevchallenge.ui.theme.MyTheme
 import com.google.accompanist.insets.LocalWindowInsets
 import com.google.accompanist.insets.ProvideWindowInsets
 import com.google.accompanist.insets.toPaddingValues
+import com.google.accompanist.swiperefresh.SwipeRefresh
+import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
 
 class MainActivity : AppCompatActivity() {
 
@@ -68,20 +73,25 @@ class MainActivity : AppCompatActivity() {
 // Start building your app here!
 @Composable
 fun MyApp(currentDayWeatherType: WeatherType) {
+    var refreshing by remember { mutableStateOf(false) }
+    val refreshState = rememberSwipeRefreshState(isRefreshing = refreshing)
+
     Surface(color = MaterialTheme.colors.background) {
-        Column(
-            Modifier
-                .fillMaxSize()
-                .verticalScroll(rememberScrollState())
-                .padding(LocalWindowInsets.current.systemBars.toPaddingValues())
-                .padding(15.dp),
-            verticalArrangement = Arrangement.spacedBy(20.dp),
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            CurrentDayWeatherInfo(Modifier.fillMaxWidth(), currentDayWeatherType)
-            WeatherDetailsCard(Modifier.fillMaxWidth())
-            HourlyForecastCard(Modifier.fillMaxWidth())
-            DailyForecastCard(Modifier.fillMaxWidth())
+        SwipeRefresh(state = refreshState, onRefresh = { }) {
+            Column(
+                Modifier
+                    .fillMaxSize()
+                    .verticalScroll(rememberScrollState())
+                    .padding(LocalWindowInsets.current.systemBars.toPaddingValues())
+                    .padding(15.dp),
+                verticalArrangement = Arrangement.spacedBy(20.dp),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                CurrentDayWeatherInfo(Modifier.fillMaxWidth(), currentDayWeatherType)
+                WeatherDetailsCard(Modifier.fillMaxWidth())
+                HourlyForecastCard(Modifier.fillMaxWidth())
+                DailyForecastCard(Modifier.fillMaxWidth())
+            }
         }
     }
 }
