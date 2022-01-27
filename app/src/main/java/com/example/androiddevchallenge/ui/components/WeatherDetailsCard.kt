@@ -28,6 +28,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import com.example.androiddevchallenge.utils.animated
 
 data class WeatherDetails(
     val type: String,
@@ -44,6 +45,7 @@ val sampleWeatherDetails = listOf(
 fun WeatherDetailsCard(modifier: Modifier) {
     Surface(
         modifier,
+        color = MaterialTheme.colors.surface.animated(),
         shape = MaterialTheme.shapes.medium
     ) {
         Row(Modifier.padding(20.dp), horizontalArrangement = Arrangement.SpaceBetween) {

@@ -36,6 +36,7 @@ import androidx.compose.ui.unit.dp
 import com.example.androiddevchallenge.R
 import com.example.androiddevchallenge.constants.StringConstants.DEGREE
 import com.example.androiddevchallenge.models.WeatherType
+import com.example.androiddevchallenge.utils.animated
 
 data class HourlyForecastData(
     val weatherType: WeatherType,
@@ -147,6 +148,7 @@ val sampleHourlyData = listOf(
 fun HourlyForecastCard(modifier: Modifier) {
     Surface(
         modifier,
+        color = MaterialTheme.colors.surface.animated(),
         shape = MaterialTheme.shapes.medium
     ) {
         Column(Modifier.padding(20.dp)) {

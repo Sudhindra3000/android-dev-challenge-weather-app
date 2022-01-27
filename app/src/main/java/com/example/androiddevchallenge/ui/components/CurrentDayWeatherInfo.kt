@@ -15,6 +15,9 @@
  */
 package com.example.androiddevchallenge.ui.components
 
+import androidx.compose.animation.Crossfade
+import androidx.compose.animation.core.Spring
+import androidx.compose.animation.core.spring
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -41,24 +44,34 @@ fun CurrentDayWeatherInfo(
     Column(
         modifier.padding(20.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.spacedBy(6.dp)
+        verticalArrangement = Arrangement.spacedBy(6.dp),
     ) {
-        Icon(
-            modifier = Modifier.size(200.dp),
-            painter = painterResource(
-                when (currentDayWeatherType) {
-                    WeatherType.SUNNY -> R.drawable.ic_sunny
-                    WeatherType.RAINY -> R.drawable.ic_rainy
-                    WeatherType.CLOUDY -> R.drawable.ic_cloudy
-                    WeatherType.STORMY -> R.drawable.ic_stormy
-                }
-            ),
-            contentDescription = "Current Day Weather Type"
-        )
-        Text(
-            text = currentDayWeatherType.toString(),
-            style = MaterialTheme.typography.caption.copy(fontWeight = FontWeight.Bold)
-        )
+        Crossfade(
+            targetState = currentDayWeatherType,
+            animationSpec = spring(stiffness = Spring.StiffnessMediumLow)
+        ) { state ->
+            Column(
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.spacedBy(6.dp),
+            ) {
+                Icon(
+                    modifier = Modifier.size(200.dp),
+                    painter = painterResource(
+                        when (state) {
+                            WeatherType.SUNNY -> R.drawable.ic_sunny
+                            WeatherType.RAINY -> R.drawable.ic_rainy
+                            WeatherType.CLOUDY -> R.drawable.ic_cloudy
+                            WeatherType.STORMY -> R.drawable.ic_stormy
+                        }
+                    ),
+                    contentDescription = "Current Day Weather Type"
+                )
+                Text(
+                    text = state.toString(),
+                    style = MaterialTheme.typography.caption.copy(fontWeight = FontWeight.Bold)
+                )
+            }
+        }
         Spacer(Modifier.size(10.dp))
         Text(text = "84${StringConstants.DEGREE}", style = MaterialTheme.typography.h1)
     }

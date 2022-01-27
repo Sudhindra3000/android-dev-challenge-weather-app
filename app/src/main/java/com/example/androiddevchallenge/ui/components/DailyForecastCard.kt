@@ -37,6 +37,7 @@ import androidx.compose.ui.unit.dp
 import com.example.androiddevchallenge.R
 import com.example.androiddevchallenge.constants.StringConstants
 import com.example.androiddevchallenge.models.WeatherType
+import com.example.androiddevchallenge.utils.animated
 
 data class DailyForecastData(
     val weatherType: WeatherType,
@@ -102,6 +103,7 @@ val sampleDailyForecastData = listOf(
 fun DailyForecastCard(modifier: Modifier) {
     Surface(
         modifier,
+        color = MaterialTheme.colors.surface.animated(),
         shape = MaterialTheme.shapes.medium
     ) {
         Column(
