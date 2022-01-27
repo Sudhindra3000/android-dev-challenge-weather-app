@@ -16,6 +16,8 @@
 package com.example.androiddevchallenge.ui.components
 
 import androidx.compose.animation.Crossfade
+import androidx.compose.animation.core.Spring
+import androidx.compose.animation.core.spring
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -44,7 +46,10 @@ fun CurrentDayWeatherInfo(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.spacedBy(6.dp),
     ) {
-        Crossfade(targetState = currentDayWeatherType) { state ->
+        Crossfade(
+            targetState = currentDayWeatherType,
+            animationSpec = spring(stiffness = Spring.StiffnessMediumLow)
+        ) { state ->
             Column(
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.spacedBy(6.dp),
