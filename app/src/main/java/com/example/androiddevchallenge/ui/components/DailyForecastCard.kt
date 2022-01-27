@@ -15,7 +15,6 @@
  */
 package com.example.androiddevchallenge.ui.components
 
-import androidx.compose.animation.animateColorAsState
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -26,7 +25,6 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
@@ -39,6 +37,7 @@ import androidx.compose.ui.unit.dp
 import com.example.androiddevchallenge.R
 import com.example.androiddevchallenge.constants.StringConstants
 import com.example.androiddevchallenge.models.WeatherType
+import com.example.androiddevchallenge.utils.animated
 
 data class DailyForecastData(
     val weatherType: WeatherType,
@@ -102,10 +101,9 @@ val sampleDailyForecastData = listOf(
 
 @Composable
 fun DailyForecastCard(modifier: Modifier) {
-    val animatedSurface by animateColorAsState(targetValue = MaterialTheme.colors.surface)
     Surface(
         modifier,
-        color = animatedSurface,
+        color = MaterialTheme.colors.surface.animated(),
         shape = MaterialTheme.shapes.medium
     ) {
         Column(
