@@ -19,10 +19,12 @@ import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.compose.animation.animateColorAsState
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.core.view.WindowCompat
 import com.example.androiddevchallenge.ui.WeatherScreen
 import com.example.androiddevchallenge.ui.theme.MyTheme
@@ -50,7 +52,8 @@ class MainActivity : AppCompatActivity() {
 // Start building your app here!
 @Composable
 fun MyApp(viewModel: MainViewModel) {
-    Surface(color = MaterialTheme.colors.background) {
+    val animatedBackground by animateColorAsState(targetValue = MaterialTheme.colors.background)
+    Surface(color = animatedBackground) {
         WeatherScreen(viewModel = viewModel)
     }
 }
