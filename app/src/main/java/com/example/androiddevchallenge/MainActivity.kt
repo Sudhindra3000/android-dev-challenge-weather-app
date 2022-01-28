@@ -39,7 +39,7 @@ class MainActivity : AppCompatActivity() {
         WindowCompat.setDecorFitsSystemWindows(window, false)
 
         setContent {
-            MyTheme(viewModel.currentDayWeatherType.collectAsState().value) {
+            MyTheme(viewModel.weatherState.collectAsState().value.weatherType) {
                 ProvideWindowInsets {
                     MyApp(viewModel)
                 }
