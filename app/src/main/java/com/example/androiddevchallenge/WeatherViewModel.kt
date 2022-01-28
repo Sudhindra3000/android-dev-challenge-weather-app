@@ -30,7 +30,7 @@ class WeatherViewModel : ViewModel() {
     val weatherState: StateFlow<WeatherState> = _weatherState
 
     fun refresh() {
-        val currentType = _weatherState.value.weatherType;
+        val currentType = _weatherState.value.weatherType
         _weatherState.value = _weatherState.value.copy(isRefreshing = true)
         viewModelScope.launch {
             delay(2000)
