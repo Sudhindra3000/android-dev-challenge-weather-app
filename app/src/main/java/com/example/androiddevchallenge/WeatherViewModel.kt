@@ -23,7 +23,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
-class MainViewModel : ViewModel() {
+class WeatherViewModel : ViewModel() {
 
     private val _currentDayWeatherType = MutableStateFlow(WeatherType.RAINY)
     val currentDayWeatherType: StateFlow<WeatherType> = _currentDayWeatherType

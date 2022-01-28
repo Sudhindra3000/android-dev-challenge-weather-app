@@ -12,7 +12,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.example.androiddevchallenge.MainViewModel
+import com.example.androiddevchallenge.WeatherViewModel
 import com.example.androiddevchallenge.ui.components.CurrentDayWeatherInfo
 import com.example.androiddevchallenge.ui.components.DailyForecastCard
 import com.example.androiddevchallenge.ui.components.HourlyForecastCard
@@ -23,7 +23,7 @@ import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
 
 @Composable
-fun WeatherScreen(viewModel: MainViewModel) {
+fun WeatherScreen(viewModel: WeatherViewModel) {
     val refreshing = viewModel.refreshing.collectAsState().value
     val refreshState = rememberSwipeRefreshState(isRefreshing = refreshing)
 

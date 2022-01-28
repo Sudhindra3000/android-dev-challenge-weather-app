@@ -31,7 +31,7 @@ import com.google.accompanist.insets.ProvideWindowInsets
 
 class MainActivity : AppCompatActivity() {
 
-    private val viewModel by viewModels<MainViewModel>()
+    private val viewModel by viewModels<WeatherViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,7 +50,7 @@ class MainActivity : AppCompatActivity() {
 
 // Start building your app here!
 @Composable
-fun MyApp(viewModel: MainViewModel) {
+fun MyApp(viewModel: WeatherViewModel) {
     Surface(color = MaterialTheme.colors.background.animated()) {
         WeatherScreen(viewModel = viewModel)
     }
