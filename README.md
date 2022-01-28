@@ -1,17 +1,10 @@
 # Weather App
 
-<!--- Replace <OWNER> with your Github Username and <REPOSITORY> with the name of your repository. -->
-<!--- You can find both of these in the url bar when you open your repository in github. -->
-![Workflow result](https://github.com/Sudhindra3000/android-dev-challenge-weather-app/workflows/Check/badge.svg)
-
-
 ## :scroll: Description
 A Single Screen Weather App made Entirely in Jetpack Compose
 
-
 ## :bulb: Motivation and Context
 The App has 4 Weather Types with a different Color Palette for each
-
 
 ## :camera_flash: Screenshots
 <!-- You can add more screenshots here if you like -->
