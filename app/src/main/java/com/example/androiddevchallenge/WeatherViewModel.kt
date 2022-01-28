@@ -23,25 +23,27 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
-class MainViewModel : ViewModel() {
+class WeatherViewModel : ViewModel() {
 
-    private val _currentDayWeatherType = MutableStateFlow(WeatherType.RAINY)
-    val currentDayWeatherType: StateFlow<WeatherType> = _currentDayWeatherType
-
-    private val _refreshing = MutableStateFlow(false)
-    val refreshing: StateFlow<Boolean> = _refreshing
+    private val _weatherState =
+        MutableStateFlow(WeatherState(isRefreshing = false, weatherType = WeatherType.RAINY))
+    val weatherState: StateFlow<WeatherState> = _weatherState
 
     fun refresh() {
-        _refreshing.value = true
+        val currentType = _weatherState.value.weatherType
+        _weatherState.value = _weatherState.value.copy(isRefreshing = true)
         viewModelScope.launch {
             delay(2000)
-            _refreshing.value = false
-            _currentDayWeatherType.value = when (_currentDayWeatherType.value) {
-                WeatherType.SUNNY -> WeatherType.RAINY
-                WeatherType.RAINY -> WeatherType.CLOUDY
-                WeatherType.CLOUDY -> WeatherType.STORMY
-                WeatherType.STORMY -> WeatherType.SUNNY
-            }
+            _weatherState.value = WeatherState(
+                isRefreshing = false,
+                weatherType =
+                when (currentType) {
+                    WeatherType.SUNNY -> WeatherType.RAINY
+                    WeatherType.RAINY -> WeatherType.CLOUDY
+                    WeatherType.CLOUDY -> WeatherType.STORMY
+                    WeatherType.STORMY -> WeatherType.SUNNY
+                },
+            )
         }
     }
 }

@@ -9,10 +9,11 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.example.androiddevchallenge.MainViewModel
+import com.example.androiddevchallenge.WeatherViewModel
 import com.example.androiddevchallenge.ui.components.CurrentDayWeatherInfo
 import com.example.androiddevchallenge.ui.components.DailyForecastCard
 import com.example.androiddevchallenge.ui.components.HourlyForecastCard
@@ -23,9 +24,9 @@ import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
 
 @Composable
-fun WeatherScreen(viewModel: MainViewModel) {
-    val refreshing = viewModel.refreshing.collectAsState().value
-    val refreshState = rememberSwipeRefreshState(isRefreshing = refreshing)
+fun WeatherScreen(viewModel: WeatherViewModel) {
+    val state by viewModel.weatherState.collectAsState()
+    val refreshState = rememberSwipeRefreshState(isRefreshing = state.isRefreshing)
 
     SwipeRefresh(
         state = refreshState,
@@ -46,7 +47,7 @@ fun WeatherScreen(viewModel: MainViewModel) {
         ) {
             CurrentDayWeatherInfo(
                 Modifier.fillMaxWidth(),
-                viewModel.currentDayWeatherType.collectAsState().value
+                state.weatherType,
             )
             WeatherDetailsCard(Modifier.fillMaxWidth())
             HourlyForecastCard(Modifier.fillMaxWidth())
